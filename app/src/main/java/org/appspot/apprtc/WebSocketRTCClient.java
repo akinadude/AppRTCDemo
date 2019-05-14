@@ -197,6 +197,7 @@ public class WebSocketRTCClient implements AppRTCClient, WebSocketChannelEvents 
                 jsonPut(json, "type", "offer");
                 sendPostMessage(MessageType.MESSAGE, messageUrl, json.toString());
                 if (connectionParameters.loopback) {
+                    //todo consider loopback while sending SDP offer
                     // In loopback mode rename this offer to answer and route it back.
                     SessionDescription sdpAnswer = new SessionDescription(
                             SessionDescription.Type.fromCanonicalForm("answer"), sdp.description);
@@ -243,6 +244,7 @@ public class WebSocketRTCClient implements AppRTCClient, WebSocketChannelEvents 
                     }
                     sendPostMessage(MessageType.MESSAGE, messageUrl, json.toString());
                     if (connectionParameters.loopback) {
+                        //todo consider loopback while sending ice candidate
                         events.onRemoteIceCandidate(candidate);
                     }
                 } else {

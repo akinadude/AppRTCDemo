@@ -736,8 +736,14 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         if (peerConnectionParameters.videoCallEnabled) {
             videoCapturer = createVideoCapturer();
         }
-        peerConnectionClient.createPeerConnection(rootEglBase.getEglBaseContext(), localProxyRenderer,
-                remoteRenderers, videoCapturer, signalingParameters);
+        //todo как юзаются signalingParameters при loopback flow
+        peerConnectionClient.createPeerConnection(
+                rootEglBase.getEglBaseContext(),
+                localProxyRenderer,
+                remoteRenderers,
+                videoCapturer,
+                signalingParameters
+        );
 
         if (signalingParameters.initiator) {
             logAndToast("Creating OFFER...");
