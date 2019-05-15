@@ -92,6 +92,18 @@ public class ConnectActivity extends Activity {
     private String keyprefNegotiated;
     private String keyprefDataId;
 
+    /*
+    ConnectActivity starts CallActivity in connectToRoom method
+
+    CallActivity contains two org.webrtc.SurfaceViewRenderer in xml for rendering user's video and remote peer video.
+    This activity does peer connection call setup or call waiting
+    and starts CallFragment which contains views for call management.
+
+    ========================================================
+
+    In CustomCallFragment a loopback mode is implemented.
+    */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -576,6 +588,7 @@ public class ConnectActivity extends Activity {
                 }
             }
 
+            //start call activity
             startActivityForResult(intent, CONNECTION_REQUEST);
         }
     }
